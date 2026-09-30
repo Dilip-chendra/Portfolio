@@ -1,0 +1,378 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   Design tokens
+   ───────────────────────────────────────────── */
+:root {
+  --color-bg: #0a0a0a;
+  --color-bg-secondary: #111111;
+  --color-text-primary: #f5f5f0;
+  --color-text-secondary: #8a8a86;
+  --color-text-muted: #4a4a48;
+  --color-accent: #c8b88c;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─────────────────────────────────────────────
+   Base reset
+   ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  /* scroll-behavior: smooth intentionally omitted — the hero canvas
+     animation requires 1:1 scroll-to-frame mapping with no lag */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─────────────────────────────────────────────
+   Typography helpers
+   ───────────────────────────────────────────── */
+.eyebrow {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.headline-xl {
+  font-size: clamp(2rem, 5.5vw, 5.5rem);
+  font-weight: 200;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.headline-lg {
+  font-size: clamp(1.5rem, 4vw, 4rem);
+  font-weight: 200;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.body-sm {
+  font-size: clamp(0.75rem, 1.3vw, 0.9rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* ─────────────────────────────────────────────
+   Selection
+   ───────────────────────────────────────────── */
+::selection {
+  background-color: rgba(200, 184, 140, 0.25);
+  color: var(--color-text-primary);
+}
+
+/* ─────────────────────────────────────────────
+   Scrollbar (subtle, dark)
+   ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a28;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a38;
+}
+
+/* ─────────────────────────────────────────────
+   Reduced motion
+   ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  /* Canvas reduced-motion handling is done in JS (shows static frame) */
+}
+
+/* Canvas renders with browser-default bicubic interpolation.
+   Do NOT override image-rendering here — crisp-edges / pixelated
+   would make video frames look blocky. imageSmoothingQuality='high'
+   is set in JS for the drawImage call itself. */
+
+@keyframes scrollLinePulse {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Case Study Split-Screen Architecture Modal
+   ───────────────────────────────────────────── */
+.case-study-modal-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.case-study-modal-left {
+  flex: 1 1 52%;
+  max-width: 52%;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.case-study-modal-right {
+  flex: 1 1 48%;
+  max-width: 48%;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 1023px) {
+  .case-study-modal-container {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .case-study-modal-left {
+    flex: none;
+    max-width: 100%;
+    height: auto;
+    min-height: 480px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .case-study-modal-right {
+    flex: none;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Curriculum Vitae / Resume Modal Styles
+   ───────────────────────────────────────────── */
+.resume-modal-shell {
+  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (max-width: 859px) {
+  .resume-mobile-tab-bar {
+    display: grid !important;
+  }
+  .resume-modal-shell {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+  .resume-modal-sidebar {
+    width: 100% !important;
+    flex: 1 !important;
+    border-right: none !important;
+    overflow-y: auto !important;
+  }
+  .resume-modal-viewer {
+    width: 100% !important;
+    flex: 1 !important;
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+  /* Show only the active tab on mobile to completely prevent collapsing */
+  .resume-modal-body.show-pdf .resume-modal-sidebar {
+    display: none !important;
+  }
+  .resume-modal-body.show-pdf .resume-modal-viewer {
+    display: flex !important;
+  }
+  .resume-modal-body.show-profile .resume-modal-sidebar {
+    display: flex !important;
+  }
+  .resume-modal-body.show-profile .resume-modal-viewer {
+    display: none !important;
+  }
+}
+
+@media (min-width: 860px) {
+  .resume-mobile-tab-bar {
+    display: none !important;
+  }
+  .resume-modal-sidebar {
+    display: flex !important;
+    width: 320px !important;
+  }
+  .resume-modal-viewer {
+    display: flex !important;
+    flex: 1 !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Responsive Navigation Visibility
+   ───────────────────────────────────────────── */
+.nav-desktop-container {
+  display: block;
+}
+
+.nav-mobile-controls {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 1099px) {
+  .nav-desktop-container {
+    display: none !important;
+  }
+  .nav-mobile-controls {
+    display: flex !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Hero Narrative Whisper Responsive Placement
+   (Guarantees zero overlap with SCROLL indicator)
+   ───────────────────────────────────────────── */
+.hero-narrative-whisper {
+  position: absolute;
+  left: clamp(16px, 3.5vw, 48px);
+  bottom: clamp(86px, 12vh, 120px);
+  max-width: min(340px, calc(46vw - 40px));
+  z-index: 10;
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .hero-narrative-whisper {
+    left: 16px !important;
+    right: 16px !important;
+    top: 60px !important;
+    bottom: auto !important;
+    max-width: calc(100% - 32px) !important;
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    pointer-events: none;
+  }
+  .hero-center-scroll-indicator {
+    display: none !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Hero Console Responsive System
+   (Zero background, zero blur, zero border - 100% image visible)
+   ───────────────────────────────────────────── */
+.hero-console {
+  position: absolute;
+  right: clamp(16px, 2.5vw, 36px);
+  top: clamp(64px, 8vh, 76px);
+  width: clamp(240px, 19vw, 280px);
+  max-height: min(520px, calc(100vh - 100px));
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: auto;
+  transition: all 0.25s ease;
+}
+
+/* Medium Laptops & Tablets (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .hero-console {
+    right: 14px;
+    top: 64px;
+    width: 240px;
+    max-height: min(480px, calc(100vh - 90px));
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Mobile Devices (< 768px): Zero background, pure floating overlay on video */
+@media (max-width: 767px) {
+  .hero-console {
+    position: fixed;
+    left: 14px !important;
+    right: 14px !important;
+    bottom: 14px !important;
+    top: auto !important;
+    width: auto !important;
+    max-height: min(46vh, 340px) !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+}
+
+
+
