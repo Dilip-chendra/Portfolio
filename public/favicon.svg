@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Dark Obsidian Badge Gradient -->
+    <radialGradient id="badgeBg" cx="50%" cy="20%" r="85%">
+      <stop offset="0%" stop-color="#161a26" />
+      <stop offset="70%" stop-color="#0a0c12" />
+      <stop offset="100%" stop-color="#040507" />
+    </radialGradient>
+
+    <!-- Luxury Champagne Gold Rim -->
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF0BA" />
+      <stop offset="35%" stop-color="#E5C378" />
+      <stop offset="70%" stop-color="#C29738" />
+      <stop offset="100%" stop-color="#735212" />
+    </linearGradient>
+
+    <!-- Left Facet: Polished 24K Gold Gradient -->
+    <linearGradient id="goldFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF6CC" />
+      <stop offset="30%" stop-color="#F5CE6D" />
+      <stop offset="70%" stop-color="#D99E26" />
+      <stop offset="100%" stop-color="#8C5C07" />
+    </linearGradient>
+
+    <!-- Right Facet: Brilliant Pure White & Diamond Platinum Gradient -->
+    <linearGradient id="whiteFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#FFFFFF" />
+      <stop offset="90%" stop-color="#FFF5D9" />
+      <stop offset="100%" stop-color="#E5C378" />
+    </linearGradient>
+
+    <!-- Ambient Gold Glow Aura -->
+    <filter id="goldAura" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+    </filter>
+  </defs>
+
+  <!-- 1. Squircle Badge for Universal Contrast on Dark and Light Browser Tabs -->
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#badgeBg)" stroke="url(#goldRim)" stroke-width="1.6" />
+
+  <!-- 2. Ambient Gold Energy Aura -->
+  <path d="M38 6 L16 31 L31 31 L24 58 L48 25 L34 25 Z" fill="#E5C378" opacity="0.38" filter="url(#goldAura)" />
+
+  <!-- 3. Chiseled 3D Drop Shadow -->
+  <path d="M39 8 L17 33 L32 33 L25 60 L49 27 L35 27 Z" fill="#000000" opacity="0.65" />
+
+  <!-- 4. Left Facet: Luxury Gold Wing -->
+  <path d="M38 6 L16 31 L31 31 L24 58 L33 28 Z" fill="url(#goldFacet)" />
+
+  <!-- 5. Right Facet: Brilliant Pure White Wing -->
+  <path d="M38 6 L33 28 L24 58 L48 25 L34 25 Z" fill="url(#whiteFacet)" />
+
+  <!-- 6. Razor-Sharp Center Pure White Energy Spine -->
+  <path d="M38 6 L33 28 L24 58" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.95" />
+
+  <!-- 7. Apex Energy Sparkle -->
+  <circle cx="38" cy="6" r="1.6" fill="#FFFFFF" />
+</svg>
