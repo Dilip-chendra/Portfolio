@@ -13,7 +13,7 @@ import { useResumeModal } from '@/context/ResumeModalContext'
 export function ResumeModal() {
   const { isOpen, closeResumeModal } = useResumeModal()
   const [copiedEmail, setCopiedEmail] = useState(false)
-  const [mobileTab, setMobileTab] = useState<'pdf' | 'profile'>('pdf')
+  const [mobileTab, setMobileTab] = useState<'profile' | 'pdf'>('profile')
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -45,49 +45,15 @@ export function ResumeModal() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="resume-modal-title"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 99999,
-        backgroundColor: 'rgba(5, 6, 8, 0.94)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 'clamp(12px, 2vw, 28px)',
-        boxSizing: 'border-box',
-      }}
+      className="resume-modal-overlay"
       onClick={closeResumeModal}
     >
       <div
         className="resume-modal-shell"
         onClick={(e) => e.stopPropagation()}
-        style={{
-          width: 'min(1240px, 96vw)',
-          height: 'min(900px, 94vh)',
-          backgroundColor: '#0c0e12',
-          border: '1px solid rgba(200, 184, 140, 0.28)',
-          borderRadius: '8px',
-          boxShadow: '0 24px 70px rgba(0, 0, 0, 0.9), 0 0 40px rgba(200, 184, 140, 0.08)',
-          display: 'flex',
-          flexDirection: 'column',
-          overflow: 'hidden',
-        }}
       >
-        {/* Top Control Bar */}
-        <div
-          style={{
-            padding: '14px 20px',
-            backgroundColor: '#090b0e',
-            borderBottom: '1px solid rgba(200, 184, 140, 0.2)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '12px',
-          }}
-        >
+        {/* Desktop Top Control Bar */}
+        <div className="resume-header-desktop">
           {/* Header Identity */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div
@@ -215,6 +181,86 @@ export function ResumeModal() {
               }}
             >
               CLOSE [ESC]
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Dedicated Single-Row Top Control Bar */}
+        <div className="resume-header-mobile">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
+            <span
+              style={{
+                width: '7px',
+                height: '7px',
+                borderRadius: '50%',
+                backgroundColor: '#57cc99',
+                boxShadow: '0 0 8px #57cc99',
+                flexShrink: 0,
+              }}
+            />
+            <span
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '13px',
+                fontWeight: 700,
+                color: '#ffffff',
+                letterSpacing: '0.02em',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              M. DILIPCHENDRA <span style={{ color: '#e5c378', fontSize: '10.5px', fontFamily: '"Space Mono", monospace', fontWeight: 500 }}>// RESUME</span>
+            </span>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+            <a
+              href="/resume.pdf"
+              download="Resume_Dilipchendra.pdf"
+              style={{
+                fontFamily: '"Space Mono", monospace',
+                fontSize: '9.5px',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                color: '#07080a',
+                backgroundColor: '#e5c378',
+                padding: '6px 10px',
+                borderRadius: '4px',
+                textDecoration: 'none',
+                fontWeight: 700,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '3px',
+                boxShadow: '0 2px 8px rgba(229, 195, 120, 0.4)',
+              }}
+            >
+              <span>PDF</span>
+              <span aria-hidden="true" style={{ fontSize: '11px' }}>↓</span>
+            </a>
+
+            <button
+              type="button"
+              onClick={closeResumeModal}
+              aria-label="Close Resume Modal"
+              style={{
+                background: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(200, 184, 140, 0.45)',
+                color: '#e5c378',
+                fontSize: '18px',
+                fontWeight: 700,
+                width: '36px',
+                height: '36px',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 0,
+                touchAction: 'manipulation',
+              }}
+            >
+              ✕
             </button>
           </div>
         </div>
@@ -529,6 +575,30 @@ export function ResumeModal() {
                   LINKEDIN ↗
                 </a>
               </div>
+
+              {/* Mobile Quick Close Action */}
+              <div className="resume-mobile-bottom-close" style={{ display: 'none', marginTop: '12px' }}>
+                <button
+                  type="button"
+                  onClick={closeResumeModal}
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    backgroundColor: 'rgba(200, 184, 140, 0.1)',
+                    border: '1px solid rgba(200, 184, 140, 0.35)',
+                    borderRadius: '4px',
+                    color: '#e5c378',
+                    fontFamily: '"Space Mono", monospace',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    letterSpacing: '0.08em',
+                    cursor: 'pointer',
+                    touchAction: 'manipulation',
+                  }}
+                >
+                  CLOSE RESUME ✕
+                </button>
+              </div>
             </div>
           </div>
 
@@ -543,15 +613,107 @@ export function ResumeModal() {
               flexDirection: 'column',
             }}
           >
+            {/* Mobile Touch-Friendly PDF Access Card */}
+            <div className="resume-mobile-pdf-card">
+              <div
+                style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '12px',
+                  backgroundColor: 'rgba(229, 195, 120, 0.12)',
+                  border: '1px solid rgba(229, 195, 120, 0.35)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '28px',
+                  marginBottom: '16px',
+                }}
+              >
+                📄
+              </div>
+              <h4
+                style={{
+                  color: '#ffffff',
+                  margin: '0 0 8px 0',
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '17px',
+                  fontWeight: 700,
+                  textAlign: 'center',
+                }}
+              >
+                Official Curriculum Vitae (PDF)
+              </h4>
+              <p
+                style={{
+                  color: '#9ba1a6',
+                  fontSize: '12px',
+                  margin: '0 0 24px 0',
+                  fontFamily: '"Space Mono", monospace',
+                  textAlign: 'center',
+                  lineHeight: 1.6,
+                  maxWidth: '320px',
+                }}
+              >
+                ATS-optimized single-page engineering format · Systems, Agentic AI & Backend Engineering
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%', maxWidth: '300px' }}>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    backgroundColor: '#e5c378',
+                    color: '#07080a',
+                    padding: '13px 20px',
+                    borderRadius: '6px',
+                    fontFamily: '"Space Mono", monospace',
+                    fontSize: '11.5px',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    letterSpacing: '0.06em',
+                    boxShadow: '0 4px 16px rgba(229, 195, 120, 0.35)',
+                  }}
+                >
+                  <span>OPEN FULLSCREEN PDF</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                  href="/resume.pdf"
+                  download="Resume_Dilipchendra.pdf"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(200, 184, 140, 0.3)',
+                    color: '#d0cfca',
+                    padding: '12px 20px',
+                    borderRadius: '6px',
+                    fontFamily: '"Space Mono", monospace',
+                    fontSize: '11.5px',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                    letterSpacing: '0.06em',
+                  }}
+                >
+                  <span>DOWNLOAD DOCUMENT</span>
+                  <span aria-hidden="true">↓</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Desktop Native PDF Viewer */}
             <iframe
+              className="resume-pdf-iframe"
               src="/resume.pdf#view=FitH"
               title="M. Dilipchendra Official Resume"
-              style={{
-                width: '100%',
-                height: '100%',
-                border: 'none',
-                backgroundColor: '#ffffff',
-              }}
             />
           </div>
         </div>

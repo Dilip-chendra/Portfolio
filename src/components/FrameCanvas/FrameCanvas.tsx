@@ -27,25 +27,15 @@ const SRC_H = 720
  * No cropping. Remaining space is filled with the canvas background (#0a0a0a).
  */
 function getContainRect(canvasW: number, canvasH: number) {
-  // On portrait or narrow devices (aspect ratio < 1.35):
-  // Full-bleed framing centered on the engineer so the video completely fills the screen without black letterboxes
-  if (canvasW / canvasH < 1.35) {
-    const scale = canvasH / SRC_H
-    const dw = Math.round(SRC_W * scale)
-    const dh = canvasH
-    // Focus horizontally on the engineer & desk (focus point ~58% of source frame)
-    const focusX = 720 * scale
-    const dx = Math.min(0, Math.max(canvasW - dw, Math.round(canvasW / 2 - focusX)))
-    const dy = 0
-    return { dx, dy, dw, dh }
-  }
-
-  // Desktop wide landscape: pristine contain fit
+  // Pristine contain fit: always show the entire 1280x720 scene without cropping
   const scale = Math.min(canvasW / SRC_W, canvasH / SRC_H)
   const dw = Math.round(SRC_W * scale)
   const dh = Math.round(SRC_H * scale)
   const dx = Math.round((canvasW - dw) / 2)
-  const dy = Math.round((canvasH - dh) / 2)
+  // On portrait mobile (aspect ratio < 0.9), position between top narrative whisper and bottom console
+  const dy = canvasW / canvasH < 0.9
+    ? Math.round((canvasH - dh) * 0.36)
+    : Math.round((canvasH - dh) / 2)
   return { dx, dy, dw, dh }
 }
 

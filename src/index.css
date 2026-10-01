@@ -192,8 +192,73 @@ body {
 /* ─────────────────────────────────────────────
    Curriculum Vitae / Resume Modal Styles
    ───────────────────────────────────────────── */
+.resume-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: rgba(5, 6, 8, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 2vw, 28px);
+  box-sizing: border-box;
+}
+
 .resume-modal-shell {
+  width: min(1240px, 96vw);
+  height: min(900px, 94vh);
+  background-color: #0c0e12;
+  border: 1px solid rgba(200, 184, 140, 0.28);
+  border-radius: 8px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.9), 0 0 40px rgba(200, 184, 140, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.resume-header-desktop {
+  padding: 14px 20px;
+  background-color: #090b0e;
+  border-bottom: 1px solid rgba(200, 184, 140, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.resume-header-mobile {
+  display: none;
+  padding: 12px 14px;
+  background-color: #090b0e;
+  border-bottom: 1px solid rgba(200, 184, 140, 0.25);
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.resume-pdf-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #ffffff;
+}
+
+.resume-mobile-pdf-card {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @keyframes modalFadeIn {
@@ -208,27 +273,58 @@ body {
 }
 
 @media (max-width: 859px) {
+  .resume-modal-overlay {
+    padding: 0 !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+  }
+  .resume-header-desktop {
+    display: none !important;
+  }
+  .resume-header-mobile {
+    display: flex !important;
+    padding-top: max(12px, env(safe-area-inset-top, 0px)) !important;
+  }
   .resume-mobile-tab-bar {
     display: grid !important;
   }
   .resume-modal-shell {
+    position: fixed !important;
+    inset: 0 !important;
     width: 100vw !important;
-    height: 100vh !important;
-    max-height: 100vh !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
     border-radius: 0 !important;
     border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
   }
   .resume-modal-sidebar {
     width: 100% !important;
     flex: 1 !important;
     border-right: none !important;
     overflow-y: auto !important;
+    padding: 16px 14px calc(40px + env(safe-area-inset-bottom, 0px)) 14px !important;
+  }
+  .resume-mobile-bottom-close {
+    display: block !important;
   }
   .resume-modal-viewer {
     width: 100% !important;
     flex: 1 !important;
     height: 100% !important;
     min-height: 0 !important;
+    overflow-y: auto !important;
+  }
+  .resume-pdf-iframe {
+    display: none !important;
+  }
+  .resume-mobile-pdf-card {
+    display: flex !important;
   }
   /* Show only the active tab on mobile to completely prevent collapsing */
   .resume-modal-body.show-pdf .resume-modal-sidebar {
@@ -246,6 +342,12 @@ body {
 }
 
 @media (min-width: 860px) {
+  .resume-header-desktop {
+    display: flex !important;
+  }
+  .resume-header-mobile {
+    display: none !important;
+  }
   .resume-mobile-tab-bar {
     display: none !important;
   }
