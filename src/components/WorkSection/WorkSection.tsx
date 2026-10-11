@@ -7,9 +7,11 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { FEATURED_SYSTEMS, type CaseStudy } from '@/data/portfolioData'
 import { SystemArchitectureVisualizer } from './SystemArchitectureVisualizer'
+import { StartupNoticeModal } from './StartupNoticeModal'
 
 export function WorkSection() {
   const [activeCaseStudy, setActiveCaseStudy] = useState<CaseStudy | null>(null)
+  const [startupModalSystem, setStartupModalSystem] = useState<CaseStudy | null>(null)
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -123,17 +125,36 @@ export function WorkSection() {
                   >
                     SYSTEM 0{idx + 1}
                   </span>
-                  <span
-                    style={{
-                      fontFamily: 'Inter, sans-serif',
-                      fontSize: '10px',
-                      color: '#8a8a86',
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    {system.category}
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    {system.isStartup && (
+                      <span
+                        style={{
+                          fontFamily: '"Space Mono", monospace',
+                          fontSize: '8.5px',
+                          color: '#e5c378',
+                          backgroundColor: 'rgba(229, 195, 120, 0.12)',
+                          border: '1px solid rgba(229, 195, 120, 0.35)',
+                          padding: '2px 6px',
+                          borderRadius: '3px',
+                          letterSpacing: '0.08em',
+                          fontWeight: 600,
+                        }}
+                      >
+                        STARTUP IP 🔒
+                      </span>
+                    )}
+                    <span
+                      style={{
+                        fontFamily: 'Inter, sans-serif',
+                        fontSize: '10px',
+                        color: '#8a8a86',
+                        letterSpacing: '0.12em',
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      {system.category}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Title & Subtitle */}
@@ -240,22 +261,48 @@ export function WorkSection() {
                   </span>
                 </button>
 
-                <a
-                  href={system.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`View ${system.title} on GitHub`}
-                  style={{
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '11px',
-                    letterSpacing: '0.14em',
-                    color: '#8a8a86',
-                    textDecoration: 'none',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  GITHUB ↗
-                </a>
+                {system.isStartup ? (
+                  <button
+                    type="button"
+                    onClick={() => setStartupModalSystem(system)}
+                    aria-label={`View startup notice and repository status for ${system.title}`}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      padding: 0,
+                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '11px',
+                      letterSpacing: '0.14em',
+                      color: '#e5c378',
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                      textTransform: 'uppercase',
+                      fontWeight: 600,
+                    }}
+                  >
+                    <span>STARTUP IP</span>
+                    <span style={{ fontSize: '11px' }}>🔒</span>
+                  </button>
+                ) : (
+                  <a
+                    href={system.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${system.title} on GitHub`}
+                    style={{
+                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '11px',
+                      letterSpacing: '0.14em',
+                      color: '#8a8a86',
+                      textDecoration: 'none',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    GITHUB ↗
+                  </a>
+                )}
               </div>
             </article>
           ))}
@@ -289,7 +336,10 @@ export function WorkSection() {
           >
             {/* Left Column: Interactive System Architecture Blueprint & Telemetry */}
             <div className="case-study-modal-left">
-              <SystemArchitectureVisualizer system={activeCaseStudy} />
+              <SystemArchitectureVisualizer
+                system={activeCaseStudy}
+                onOpenStartupNotice={(sys) => setStartupModalSystem(sys)}
+              />
             </div>
 
             {/* Right Column: Case Study Documentation */}
@@ -383,25 +433,53 @@ export function WorkSection() {
                 paddingBottom: '24px',
               }}
             >
-              <a
-                href={activeCaseStudy.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: '11px',
-                  letterSpacing: '0.18em',
-                  textTransform: 'uppercase',
-                  color: '#0a0a0a',
-                  backgroundColor: '#c8b88c',
-                  padding: '10px 20px',
-                  textDecoration: 'none',
-                  borderRadius: '2px',
-                  fontWeight: 500,
-                }}
-              >
-                VIEW REPOSITORY ↗
-              </a>
+              {activeCaseStudy.isStartup ? (
+                <button
+                  type="button"
+                  onClick={() => setStartupModalSystem(activeCaseStudy)}
+                  style={{
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '11px',
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase',
+                    color: '#0a0a0a',
+                    backgroundColor: '#e5c378',
+                    padding: '10px 20px',
+                    border: 'none',
+                    borderRadius: '2px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    boxShadow: '0 2px 12px rgba(229, 195, 120, 0.3)',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  <span>STARTUP REPOSITORY</span>
+                  <span>🔒</span>
+                </button>
+              ) : (
+                <a
+                  href={activeCaseStudy.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '11px',
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase',
+                    color: '#0a0a0a',
+                    backgroundColor: '#c8b88c',
+                    padding: '10px 20px',
+                    textDecoration: 'none',
+                    borderRadius: '2px',
+                    fontWeight: 500,
+                  }}
+                >
+                  VIEW REPOSITORY ↗
+                </a>
+              )}
               {activeCaseStudy.liveDemoUrl && (
                 <a
                   href={activeCaseStudy.liveDemoUrl}
@@ -426,6 +504,67 @@ export function WorkSection() {
 
             {/* Case Study Sections */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+              {/* Active Startup Notice Banner */}
+              {activeCaseStudy.isStartup && (
+                <div
+                  onClick={() => setStartupModalSystem(activeCaseStudy)}
+                  style={{
+                    padding: '14px 18px',
+                    backgroundColor: 'rgba(229, 195, 120, 0.08)',
+                    border: '1px solid rgba(229, 195, 120, 0.28)',
+                    borderRadius: '4px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    cursor: 'pointer',
+                    gap: '12px',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontSize: '20px' }}>🚀</span>
+                    <div>
+                      <div
+                        style={{
+                          fontFamily: '"Space Mono", monospace',
+                          fontSize: '10px',
+                          color: '#e5c378',
+                          letterSpacing: '0.1em',
+                          fontWeight: 700,
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        COMMERCIAL STARTUP // PROPRIETARY CODEBASE
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: 'Inter, sans-serif',
+                          fontSize: '12px',
+                          color: '#dedcd5',
+                          marginTop: '3px',
+                          lineHeight: 1.45,
+                        }}
+                      >
+                        This system has transitioned into an active commercial startup. The core codebase is private IP. Click to inspect startup details or request accredited access.
+                      </div>
+                    </div>
+                  </div>
+                  <span
+                    style={{
+                      fontFamily: '"Space Mono", monospace',
+                      fontSize: '10.5px',
+                      color: '#e5c378',
+                      fontWeight: 700,
+                      flexShrink: 0,
+                      padding: '4px 8px',
+                      backgroundColor: 'rgba(229, 195, 120, 0.15)',
+                      borderRadius: '3px',
+                    }}
+                  >
+                    DETAILS →
+                  </span>
+                </div>
+              )}
               <div>
                 <h4 style={{ color: '#c8b88c', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 8px 0' }}>
                   WHAT IT IS
@@ -543,6 +682,16 @@ export function WorkSection() {
       </div>,
       document.body
     )}
-  </section>
-)
+
+      {/* Attractive Commercial Startup Notice Modal */}
+      <StartupNoticeModal
+        system={startupModalSystem}
+        onClose={() => setStartupModalSystem(null)}
+        onInspectArchitecture={(sys) => {
+          setActiveCaseStudy(sys)
+          setStartupModalSystem(null)
+        }}
+      />
+    </section>
+  )
 }

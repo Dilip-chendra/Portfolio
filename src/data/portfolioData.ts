@@ -4,6 +4,15 @@
 // Zero fabricated metrics, zero invented customer counts or revenue.
 // ─────────────────────────────────────────────
 
+export interface StartupDetails {
+  ventureStage: string
+  tagline: string
+  noticeHeadline: string
+  overview: string
+  ipHighlights: string[]
+  accessProtocol: string
+}
+
 export interface CaseStudy {
   id: string
   title: string
@@ -12,6 +21,8 @@ export interface CaseStudy {
   summary: string
   githubUrl: string
   liveDemoUrl?: string
+  isStartup?: boolean
+  startupDetails?: StartupDetails
   tags: string[]
   whatItIs: string
   problem: string
@@ -199,6 +210,19 @@ export const FEATURED_SYSTEMS: CaseStudy[] = [
     category: 'Evidence-Grounded Intelligence',
     summary: 'A platform for live competitor research, evidence extraction, source provenance, conflict detection, intelligence synthesis, and human-reviewed execution workflows.',
     githubUrl: 'https://github.com/Dilip-chendra/ResearchFlow.AI',
+    isStartup: true,
+    startupDetails: {
+      ventureStage: 'Commercial Stealth Incubation',
+      tagline: 'Autonomous Competitive Intelligence & Evidence-Backed Research Platform',
+      noticeHeadline: 'Transitioned to Commercial Enterprise Startup',
+      overview: 'ResearchFlow AI has transitioned from an open research tool into an active commercial enterprise startup. To protect proprietary multi-agent citation provenance algorithms, cross-source conflict reconciliation models, and enterprise customer data pipelines, this repository is currently under private commercial development.',
+      ipHighlights: [
+        'Proprietary Claim-to-Vector Citation Provenance Engine with strict multi-tenant isolation',
+        'Autonomous Cross-Source Contradiction & Market Shift Detection Algorithms',
+        'Enterprise-grade asynchronous scraping runtime and ChromaDB vector indexing pipeline',
+      ],
+      accessProtocol: 'Accredited investors, design partners, and prospective enterprise clients can request private repository access or an NDA-backed architecture walkthrough.',
+    },
     tags: ['LangGraph', 'RAG', 'ChromaDB', 'Source Provenance', 'Conflict Detection', 'FastAPI'],
     whatItIs: 'An autonomous research engine that continuously analyzes competitor ecosystems, verifies claims against grounded sources, and flags contradictory market intelligence.',
     problem: 'Generic LLM research hallucinated facts, lacks verifiable source attribution, and cannot detect when two credible sources assert opposing market realities.',
@@ -264,6 +288,19 @@ export const FEATURED_SYSTEMS: CaseStudy[] = [
     category: 'Interactive Multi-Modal Platform',
     summary: 'An AI interview platform combining human-video interviewer personas, adaptive questioning, voice interaction, live coding, system design, and evidence-backed evaluation.',
     githubUrl: 'https://github.com/Dilip-chendra/Veyra',
+    isStartup: true,
+    startupDetails: {
+      ventureStage: 'Active Venture Incubation',
+      tagline: 'Photorealistic AI Human Interviewer & Technical Assessment Platform',
+      noticeHeadline: 'Transitioned to Commercial HR-Tech Startup',
+      overview: 'Veyra AI has transitioned into an active commercial venture building next-generation autonomous technical interviewing solutions. The core repository has been made private to safeguard our proprietary multi-modal persona synchronization, real-time Monaco IDE evaluation harness, and adaptive question state machine.',
+      ipHighlights: [
+        'Proprietary Video Persona Synchronization & Low-Latency Voice AI Pipeline',
+        'Dynamic Question Difficulty State Machine adapting to real-time candidate code complexity',
+        'Standardized Evidence-Backed Candidate Evaluation & Rubric Synthesis Engine',
+      ],
+      accessProtocol: 'Accredited venture partners, pilot design partners, and enterprise recruiting teams can request private code access and technical demonstrations.',
+    },
     tags: ['React', 'TypeScript', 'Monaco Editor', 'Voice AI', 'Live Coding', 'Adaptive Engine'],
     whatItIs: 'A technical screening platform that pairs an adaptive AI interviewer persona with real-time coding execution and whiteboard system design capabilities.',
     problem: 'Standard AI interviewers feel mechanical, rely on static question banks, and fail to provide interactive technical environments for live problem solving.',

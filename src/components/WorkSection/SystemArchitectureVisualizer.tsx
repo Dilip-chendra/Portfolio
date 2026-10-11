@@ -11,6 +11,7 @@ import type { CaseStudy } from '@/data/portfolioData'
 
 interface SystemArchitectureVisualizerProps {
   system: CaseStudy
+  onOpenStartupNotice?: (system: CaseStudy) => void
 }
 
 interface BlueprintStage {
@@ -340,7 +341,10 @@ const SYSTEM_BLUEPRINTS: Record<string, {
   },
 }
 
-export function SystemArchitectureVisualizer({ system }: SystemArchitectureVisualizerProps) {
+export function SystemArchitectureVisualizer({
+  system,
+  onOpenStartupNotice,
+}: SystemArchitectureVisualizerProps) {
   const [copied, setCopied] = useState(false)
   const blueprint = SYSTEM_BLUEPRINTS[system.id] || SYSTEM_BLUEPRINTS['reviveos']
 
@@ -644,13 +648,13 @@ export function SystemArchitectureVisualizer({ system }: SystemArchitectureVisua
         })}
       </div>
 
-      {/* Terminal Clone Command Bar */}
+      {/* Terminal Bar: Commercial Startup Notice vs Public Git Clone */}
       <div
         style={{
           marginTop: 'auto',
           padding: '12px 14px',
           backgroundColor: 'rgba(10, 12, 16, 0.9)',
-          border: '1px solid rgba(200, 184, 140, 0.25)',
+          border: system.isStartup ? '1px solid rgba(229, 195, 120, 0.35)' : '1px solid rgba(200, 184, 140, 0.25)',
           borderRadius: '5px',
           display: 'flex',
           alignItems: 'center',
@@ -658,40 +662,83 @@ export function SystemArchitectureVisualizer({ system }: SystemArchitectureVisua
           gap: '12px',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
-          <span style={{ color: '#57cc99', fontFamily: '"Space Mono", monospace', fontSize: '11px' }}>$</span>
-          <span
-            style={{
-              fontFamily: '"Space Mono", monospace',
-              fontSize: '10px',
-              color: '#d0cfca',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}
-          >
-            git clone {system.githubUrl}.git
-          </span>
-        </div>
+        {system.isStartup ? (
+          <>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
+              <span style={{ color: '#e5c378', fontFamily: '"Space Mono", monospace', fontSize: '11px' }}>🔒</span>
+              <span
+                style={{
+                  fontFamily: '"Space Mono", monospace',
+                  fontSize: '9.5px',
+                  color: '#e5c378',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  letterSpacing: '0.04em',
+                }}
+              >
+                PROPRIETARY STARTUP // REPOSITORY PRIVATE
+              </span>
+            </div>
 
-        <button
-          type="button"
-          onClick={copyCloneCommand}
-          style={{
-            background: copied ? 'rgba(87, 204, 153, 0.2)' : 'rgba(200, 184, 140, 0.15)',
-            border: `1px solid ${copied ? '#57cc99' : 'rgba(200, 184, 140, 0.4)'}`,
-            color: copied ? '#57cc99' : '#e5c378',
-            fontFamily: '"Space Mono", monospace',
-            fontSize: '9px',
-            padding: '5px 10px',
-            borderRadius: '3px',
-            cursor: 'pointer',
-            whiteSpace: 'nowrap',
-            transition: 'all 0.2s ease',
-          }}
-        >
-          {copied ? 'COPIED!' : 'COPY CLONE'}
-        </button>
+            <button
+              type="button"
+              onClick={() => onOpenStartupNotice?.(system)}
+              style={{
+                background: 'rgba(229, 195, 120, 0.16)',
+                border: '1px solid rgba(229, 195, 120, 0.45)',
+                color: '#e5c378',
+                fontFamily: '"Space Mono", monospace',
+                fontSize: '9px',
+                padding: '5px 10px',
+                borderRadius: '3px',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                fontWeight: 600,
+                transition: 'all 0.2s ease',
+              }}
+            >
+              STARTUP NOTICE ↗
+            </button>
+          </>
+        ) : (
+          <>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
+              <span style={{ color: '#57cc99', fontFamily: '"Space Mono", monospace', fontSize: '11px' }}>$</span>
+              <span
+                style={{
+                  fontFamily: '"Space Mono", monospace',
+                  fontSize: '10px',
+                  color: '#d0cfca',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}
+              >
+                git clone {system.githubUrl}.git
+              </span>
+            </div>
+
+            <button
+              type="button"
+              onClick={copyCloneCommand}
+              style={{
+                background: copied ? 'rgba(87, 204, 153, 0.2)' : 'rgba(200, 184, 140, 0.15)',
+                border: `1px solid ${copied ? '#57cc99' : 'rgba(200, 184, 140, 0.4)'}`,
+                color: copied ? '#57cc99' : '#e5c378',
+                fontFamily: '"Space Mono", monospace',
+                fontSize: '9px',
+                padding: '5px 10px',
+                borderRadius: '3px',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              {copied ? 'COPIED!' : 'COPY CLONE'}
+            </button>
+          </>
+        )}
       </div>
     </div>
   )
