@@ -356,7 +356,7 @@ export function ResumeModal() {
                   marginBottom: '6px',
                 }}
               >
-                TARGET ENGINEERING ROLE
+                CURRENT PROFILE &amp; OBJECTIVE
               </div>
               <div
                 style={{
@@ -368,7 +368,7 @@ export function ResumeModal() {
                   marginBottom: '4px',
                 }}
               >
-                Forward Deployed Engineer (AI Solutions & Integrations)
+                AI &amp; Data Science Student | Founder at Veyra AI
               </div>
               <div
                 style={{
@@ -378,7 +378,7 @@ export function ResumeModal() {
                   lineHeight: 1.4,
                 }}
               >
-                Agentic Systems · LangGraph · Model Context Protocol (MCP) · Deterministic Firewalls
+                Open for AI/ML Internships &amp; Engineering Roles · Multi-Agent Systems · MCP · RAG
               </div>
             </div>
 
@@ -654,7 +654,7 @@ export function ResumeModal() {
                   maxWidth: '320px',
                 }}
               >
-                ATS-optimized single-page engineering format · Systems, Agentic AI & Backend Engineering
+                ATS-optimized single-page engineering format · AI &amp; Data Science · Systems &amp; ML
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%', maxWidth: '300px' }}>

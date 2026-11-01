@@ -3,7 +3,7 @@
 //
 // Features:
 //   - High-contrast, luxurious White & Radiant Gold palette
-//   - Precise typewriter effect typing "M. DILIPCHENDRA" and "AGENTIC AI ENGINEER"
+//   - Precise typewriter effect typing "M. DILIPCHENDRA" and "AI & DATA SCIENCE STUDENT | FOUNDER @ VEYRA AI"
 //   - Glowing White-Gold progress bar with trailing particle
 //   - Real-time terminal initialization status log
 //   - High visibility against deep obsidian radial backdrop
@@ -17,7 +17,7 @@ interface LoadingScreenProps {
 }
 
 const NAME_TARGET = 'M. DILIPCHENDRA'
-const ROLE_TARGET = 'AGENTIC AI ENGINEER'
+const ROLE_TARGET = 'AI & DATA SCIENCE STUDENT | FOUNDER @ VEYRA AI'
 
 export function LoadingScreen({ progress, isReady }: LoadingScreenProps) {
   const [phase, setPhase] = useState<'loading' | 'fading' | 'done'>('loading')
@@ -54,7 +54,7 @@ export function LoadingScreen({ progress, isReady }: LoadingScreenProps) {
         setTypingComplete(true)
         clearInterval(interval)
       }
-    }, 55)
+    }, 42)
 
     return () => clearInterval(interval)
   }, [])
@@ -264,21 +264,25 @@ export function LoadingScreen({ progress, isReady }: LoadingScreenProps) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          minHeight: '22px',
+          minHeight: '26px',
           marginBottom: '40px',
+          padding: '0 16px',
+          textAlign: 'center',
         }}
       >
         <span
           style={{
             fontFamily: '"Space Mono", "JetBrains Mono", monospace',
-            fontSize: 'clamp(10px, 1.8vw, 13px)',
-            letterSpacing: '0.36em',
+            fontSize: 'clamp(9px, 1.6vw, 12px)',
+            letterSpacing: 'clamp(0.12em, 0.4vw, 0.22em)',
             color: '#c8b88c',
             textTransform: 'uppercase',
             fontWeight: 500,
             textShadow: '0 0 16px rgba(200, 184, 140, 0.4)',
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
           }}
         >
           {typedRole}

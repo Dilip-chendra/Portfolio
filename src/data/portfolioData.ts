@@ -89,8 +89,8 @@ export interface Education {
 // ─────────────────────────────────────────────
 export const PROFILE = {
   name: 'M. DILIPCHENDRA',
-  role: 'Agentic AI Engineer',
-  specialization: 'LangGraph · MCP · Multi-Agent Orchestration · RAG · LLM Tool Calling',
+  role: 'AI & Data Science Student | Founder at Veyra AI',
+  specialization: 'Founder @ Veyra AI · AI & Data Science Student · Multi-Agent Systems · LangGraph · MCP',
   location: 'Hyderabad, India',
   email: 'dilip.madagari@gmail.com',
   phone: '+91 7075464029',

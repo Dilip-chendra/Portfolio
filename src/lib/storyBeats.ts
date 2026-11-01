@@ -100,7 +100,7 @@ export const STORY_BEATS: StoryBeat[] = [
     progressFade: 0.97,
     progressEnd: 1.0,
     headline: 'NOW I BUILD AI SYSTEMS\nTHAT REASON, CONNECT\n& EXECUTE.',
-    secondary: 'Agentic AI Engineer\nLangGraph · MCP · RAG · Python · FastAPI',
+    secondary: 'AI & Data Science Student | Founder at Veyra AI\nLangGraph · MCP · RAG · Python · FastAPI',
     align: 'left',
     verticalPosition: 'bottom',
   },

@@ -71,7 +71,7 @@ export function ContactSection() {
               fontWeight: 300,
             }}
           >
-            Open to engineering roles and collaborations involving Agentic AI, autonomous multi-agent orchestration, enterprise RAG architectures, and production tool execution.
+            Open to AI/ML internships, engineering roles, and collaborations involving autonomous multi-agent orchestration, enterprise RAG architectures, and production tool execution.
           </p>
         </div>
 

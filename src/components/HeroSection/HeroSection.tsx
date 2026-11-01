@@ -189,7 +189,7 @@ export function HeroSection({ frameState }: HeroSectionProps) {
              ══════════════════════════════════════════════════════════════ */}
           <aside
             className="hero-console"
-            aria-label="Agentic AI Engineer Console"
+            aria-label="Interactive Profile &amp; Engineering Console"
           >
             {/* Top Interactive Stepper Rail */}
             <div
@@ -299,7 +299,7 @@ export function HeroSection({ frameState }: HeroSectionProps) {
                         textShadow: '0 2px 8px rgba(0,0,0,1), 0 1px 3px #000',
                       }}
                     >
-                      HYDERABAD · AVAILABLE
+                      HYDERABAD · OPEN FOR INTERNSHIPS &amp; ROLES
                     </span>
                   </div>
 
@@ -320,16 +320,17 @@ export function HeroSection({ frameState }: HeroSectionProps) {
                   <div
                     style={{
                       fontFamily: '"Space Mono", monospace',
-                      fontSize: '9.5px',
+                      fontSize: '9.2px',
                       color: '#e5c378',
-                      letterSpacing: '0.12em',
+                      letterSpacing: '0.08em',
                       textTransform: 'uppercase',
                       marginBottom: '8px',
                       fontWeight: 700,
+                      lineHeight: 1.4,
                       textShadow: '0 2px 8px rgba(0,0,0,1), 0 1px 3px #000',
                     }}
                   >
-                    AGENTIC AI ENGINEER
+                    AI &amp; DATA SCIENCE STUDENT | FOUNDER @ VEYRA AI
                   </div>
 
                   <p
@@ -343,7 +344,7 @@ export function HeroSection({ frameState }: HeroSectionProps) {
                       textShadow: '0 2px 8px rgba(0,0,0,1), 0 1px 4px #000',
                     }}
                   >
-                    Specializing in autonomous multi-agent systems, LangGraph cyclical workflows, and Model Context Protocol (MCP) tool calling.
+                    B.Tech AI &amp; Data Science student at NMREC and Founder at Veyra AI. Specializing in autonomous multi-agent systems, LangGraph cyclical workflows, and Model Context Protocol (MCP).
                   </p>
 
                   {/* Core Framework Pills */}
