@@ -39,16 +39,16 @@ export function StartupNoticeModal({
   if (!system) return null
 
   const startup = system.startupDetails || {
-    ventureStage: 'Active Commercial Incubation',
+    ventureStage: 'Independently Engineered Production Platform',
     tagline: system.subtitle,
-    noticeHeadline: 'Transitioned to Commercial Venture',
-    overview: `${system.title} has transitioned from an open-source prototype into an active commercial startup. The codebase, model pipelines, and system architectures are currently protected under private commercial development.`,
+    noticeHeadline: 'Independently Engineered Production Platform',
+    overview: `${system.title} was independently created, architected, and deployed as a production platform. The codebase, model pipelines, and system architectures are maintained under a private repository.`,
     ipHighlights: [
       'Proprietary Multi-Agent Orchestration & Workflow State Machine',
       'Production-Grade Real-Time Integration & Schema Validation Engines',
       'Enterprise Data Isolation & Vector Security Protocols',
     ],
-    accessProtocol: 'Accredited investors, design partners, and enterprise collaborators can request private repository access or an NDA-backed architecture walkthrough.',
+    accessProtocol: 'Recruiters, engineering leads, and technical collaborators can request private repository access or an architecture walkthrough.',
   }
 
   function handleRequestAccess() {
@@ -253,7 +253,7 @@ export function StartupNoticeModal({
                   fontWeight: 600,
                 }}
               >
-                ACTIVE STARTUP
+                PRODUCTION PLATFORM
               </span>
             </h2>
 

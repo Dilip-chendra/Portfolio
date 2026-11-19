@@ -299,7 +299,7 @@ export function HeroSection({ frameState }: HeroSectionProps) {
                         textShadow: '0 2px 8px rgba(0,0,0,1), 0 1px 3px #000',
                       }}
                     >
-                      HYDERABAD · OPEN FOR INTERNSHIPS &amp; ROLES
+                      HYDERABAD · OPEN FOR INTERNSHIPS (DEC 2026)
                     </span>
                   </div>
 
@@ -330,7 +330,7 @@ export function HeroSection({ frameState }: HeroSectionProps) {
                       textShadow: '0 2px 8px rgba(0,0,0,1), 0 1px 3px #000',
                     }}
                   >
-                    AI &amp; DATA SCIENCE STUDENT | FOUNDER @ VEYRA AI
+                    FINAL-YEAR AI &amp; DATA SCIENCE STUDENT | CREATOR &amp; AI SYSTEMS BUILDER
                   </div>
 
                   <p
@@ -344,7 +344,7 @@ export function HeroSection({ frameState }: HeroSectionProps) {
                       textShadow: '0 2px 8px rgba(0,0,0,1), 0 1px 4px #000',
                     }}
                   >
-                    B.Tech AI &amp; Data Science student at NMREC and Founder at Veyra AI. Specializing in autonomous multi-agent systems, LangGraph cyclical workflows, and Model Context Protocol (MCP).
+                    Final-year B.Tech AI &amp; Data Science student at NMREC (graduating May 2027) and Creator of Veyrai (1,000+ users, Cartesia Startup Program). Open to full-time AI Engineering, Backend/Full-Stack, or AI Product internships starting December 2026.
                   </p>
 
                   {/* Core Framework Pills */}

@@ -368,7 +368,7 @@ export function ResumeModal() {
                   marginBottom: '4px',
                 }}
               >
-                AI &amp; Data Science Student | Founder at Veyra AI
+                Final-Year AI &amp; Data Science Student ('27) | Creator &amp; AI Systems Builder
               </div>
               <div
                 style={{
@@ -378,7 +378,7 @@ export function ResumeModal() {
                   lineHeight: 1.4,
                 }}
               >
-                Open for AI/ML Internships &amp; Engineering Roles · Multi-Agent Systems · MCP · RAG
+                Open for Full-Time AI Engineering, Backend, or AI Product Internships starting December 2026 (Graduating May 2027)
               </div>
             </div>
 

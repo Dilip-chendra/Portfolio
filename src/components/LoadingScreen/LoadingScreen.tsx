@@ -3,7 +3,7 @@
 //
 // Features:
 //   - High-contrast, luxurious White & Radiant Gold palette
-//   - Precise typewriter effect typing "M. DILIPCHENDRA" and "AI & DATA SCIENCE STUDENT | FOUNDER @ VEYRA AI"
+//   - Precise typewriter effect typing "M. DILIPCHENDRA" and "FINAL-YEAR AI & DATA SCIENCE STUDENT | CREATOR & AI SYSTEMS BUILDER"
 //   - Glowing White-Gold progress bar with trailing particle
 //   - Real-time terminal initialization status log
 //   - High visibility against deep obsidian radial backdrop
@@ -17,7 +17,7 @@ interface LoadingScreenProps {
 }
 
 const NAME_TARGET = 'M. DILIPCHENDRA'
-const ROLE_TARGET = 'AI & DATA SCIENCE STUDENT | FOUNDER @ VEYRA AI'
+const ROLE_TARGET = 'FINAL-YEAR AI & DATA SCIENCE STUDENT | CREATOR & AI SYSTEMS BUILDER'
 
 export function LoadingScreen({ progress, isReady }: LoadingScreenProps) {
   const [phase, setPhase] = useState<'loading' | 'fading' | 'done'>('loading')
@@ -54,7 +54,7 @@ export function LoadingScreen({ progress, isReady }: LoadingScreenProps) {
         setTypingComplete(true)
         clearInterval(interval)
       }
-    }, 42)
+    }, 30)
 
     return () => clearInterval(interval)
   }, [])

@@ -71,7 +71,7 @@ export function ContactSection() {
               fontWeight: 300,
             }}
           >
-            Open to AI/ML internships, engineering roles, and collaborations involving autonomous multi-agent orchestration, enterprise RAG architectures, and production tool execution.
+            Final-year B.Tech AI &amp; Data Science student at NMREC (graduating May 2027). Open to full-time AI Engineering, Backend/Full-Stack, and AI Product internships starting December 2026, as well as collaborative AI systems development.
           </p>
         </div>
 

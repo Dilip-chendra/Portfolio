@@ -140,7 +140,7 @@ export function WorkSection() {
                           fontWeight: 600,
                         }}
                       >
-                        STARTUP IP 🔒
+                        PRIVATE IP 🔒
                       </span>
                     )}
                     <span
@@ -265,7 +265,7 @@ export function WorkSection() {
                   <button
                     type="button"
                     onClick={() => setStartupModalSystem(system)}
-                    aria-label={`View startup notice and repository status for ${system.title}`}
+                    aria-label={`View repository notice and architecture details for ${system.title}`}
                     style={{
                       background: 'none',
                       border: 'none',
@@ -282,7 +282,7 @@ export function WorkSection() {
                       fontWeight: 600,
                     }}
                   >
-                    <span>STARTUP IP</span>
+                    <span>PRIVATE IP</span>
                     <span style={{ fontSize: '11px' }}>🔒</span>
                   </button>
                 ) : (
@@ -456,7 +456,7 @@ export function WorkSection() {
                     transition: 'all 0.2s ease',
                   }}
                 >
-                  <span>STARTUP REPOSITORY</span>
+                  <span>PRIVATE REPOSITORY</span>
                   <span>🔒</span>
                 </button>
               ) : (
@@ -534,7 +534,7 @@ export function WorkSection() {
                           textTransform: 'uppercase',
                         }}
                       >
-                        COMMERCIAL STARTUP // PROPRIETARY CODEBASE
+                        PRODUCTION SYSTEM // PRIVATE CODEBASE
                       </div>
                       <div
                         style={{
@@ -545,7 +545,7 @@ export function WorkSection() {
                           lineHeight: 1.45,
                         }}
                       >
-                        This system has transitioned into an active commercial startup. The core codebase is private IP. Click to inspect startup details or request accredited access.
+                        This platform has been engineered into a production system. The core codebase is private IP. Click to inspect architecture details or request repository access.
                       </div>
                     </div>
                   </div>

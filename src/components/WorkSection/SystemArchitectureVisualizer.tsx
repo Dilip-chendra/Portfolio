@@ -677,7 +677,7 @@ export function SystemArchitectureVisualizer({
                   letterSpacing: '0.04em',
                 }}
               >
-                PROPRIETARY STARTUP // REPOSITORY PRIVATE
+                PROPRIETARY SYSTEM // REPOSITORY PRIVATE
               </span>
             </div>
 
@@ -698,7 +698,7 @@ export function SystemArchitectureVisualizer({
                 transition: 'all 0.2s ease',
               }}
             >
-              STARTUP NOTICE ↗
+              PRIVATE REPO NOTICE ↗
             </button>
           </>
         ) : (
